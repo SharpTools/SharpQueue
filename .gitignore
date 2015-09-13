@@ -22,7 +22,11 @@ bld/
 [Bb]in/
 [Oo]bj/
 
+<<<<<<< HEAD
 # Visual Studio 2015 cache/options directory
+=======
+# Visual Studo 2015 cache/options directory
+>>>>>>> 7d41f11b2b9d1f0026cd75d1d65ba885e2fcaf86
 .vs/
 
 # MSTest test Results
@@ -38,10 +42,13 @@ TestResult.xml
 [Rr]eleasePS/
 dlldata.c
 
+<<<<<<< HEAD
 # DNX
 project.lock.json
 artifacts/
 
+=======
+>>>>>>> 7d41f11b2b9d1f0026cd75d1d65ba885e2fcaf86
 *_i.c
 *_p.c
 *_i.h
@@ -94,7 +101,11 @@ _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
+<<<<<<< HEAD
 # JustCode is a .NET coding add-in
+=======
+# JustCode is a .NET coding addin-in
+>>>>>>> 7d41f11b2b9d1f0026cd75d1d65ba885e2fcaf86
 .JustCode
 
 # TeamCity is a build add-in
@@ -133,11 +144,17 @@ publish/
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
+<<<<<<< HEAD
 ## TODO: Comment the next line if you want to checkin your
 ## web deploy settings but do note that will include unencrypted
 ## passwords
 #*.pubxml
 
+=======
+# TODO: Comment the next line if you want to checkin your web deploy settings 
+# but database connection strings (with potential passwords) will be unencrypted
+*.pubxml
+>>>>>>> 7d41f11b2b9d1f0026cd75d1d65ba885e2fcaf86
 *.publishproj
 
 # NuGet Packages
@@ -156,6 +173,7 @@ csx/
 # Windows Store app package directory
 AppPackages/
 
+<<<<<<< HEAD
 # Visual Studio cache files
 # files ending in .cache can be ignored
 *.[Cc]ache
@@ -163,6 +181,10 @@ AppPackages/
 !*.[Cc]ache/
 
 # Others
+=======
+# Others
+*.[Cc]ache
+>>>>>>> 7d41f11b2b9d1f0026cd75d1d65ba885e2fcaf86
 ClientBin/
 [Ss]tyle[Cc]op.*
 ~$*
@@ -172,7 +194,11 @@ ClientBin/
 *.pfx
 *.publishsettings
 node_modules/
+<<<<<<< HEAD
 orleans.codegen.cs
+=======
+bower_components/
+>>>>>>> 7d41f11b2b9d1f0026cd75d1d65ba885e2fcaf86
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -205,8 +231,11 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+<<<<<<< HEAD
 
 # LightSwitch generated files
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+=======
+>>>>>>> 7d41f11b2b9d1f0026cd75d1d65ba885e2fcaf86

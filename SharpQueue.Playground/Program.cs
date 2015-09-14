@@ -32,7 +32,7 @@ namespace Sharp.Queue.Playground {
                 using (var q = new SharpQueue("queue")) {
                     while (Program.Running) {
                         await Task.Delay(2000);
-                        var info = await q.GetQueueInfoAsync();
+                        var info = q.GetQueueInfo();
                         Console.WriteLine($"-> Queue -> Enqueued: {info.Enqueued} Error: {info.Error}");
                     }
                 }
@@ -82,7 +82,7 @@ namespace Sharp.Queue.Playground {
                 while (Program.Running) {
                     await Task.Delay(2000);
                     try {
-                        await q.EnqueueAsync(items);
+                        q.Enqueue(items);
                     }
                     catch (Exception ex) {
                         Console.WriteLine("Enqueue error: " + ex);
@@ -100,7 +100,7 @@ namespace Sharp.Queue.Playground {
             using (var q = new SharpQueue("queue")) {
                 while (Program.Running) {
                     try {
-                        var item = await q.DequeueAsync<List<Item>>();
+                        var item = q.Dequeue<List<Item>>();
                         await Task.Delay(_random.Next(1, 4) * 1);
                     }
                     catch (Exception ex) {

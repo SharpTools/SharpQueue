@@ -7,12 +7,13 @@ namespace Sharp.Queue.Tests {
     public class SharpQueueTests {
 
         private string _dir = "dir";
+        private string _deepDir = "secondDir\\test";
         private SharpQueue _queue;
 
         [SetUp]
         public void SetUp() {
+            EmptyDirs(_dir, _deepDir);
             _queue = new SharpQueue(_dir);
-            EmptyDir();
         }
 
         [Test]
@@ -21,35 +22,49 @@ namespace Sharp.Queue.Tests {
         }
 
         [Test]
-        public async Task Should_enqueue() {
-            await _queue.EnqueueAsync("test");
-            var filename = GetFirstDirFile();
+        public void Should_enqueue() {
+            _queue.Enqueue("test");
+            var filename = GetFirstDirFile(_dir);
             var text = File.ReadAllText(Path.Combine(_dir, filename));
             Assert.AreEqual("\"test\"", text);
         }
 
         [Test]
-        public async Task Should_dequeue() {
-            await _queue.EnqueueAsync("test");
-            var item = await _queue.DequeueAsync<string>();
+        public void Mutex_names_dont_allow_backslash() {
+            _queue = new SharpQueue(_deepDir);
+            _queue.Enqueue("test");
+            var filename = GetFirstDirFile(_deepDir);
+            var text = File.ReadAllText(Path.Combine(_deepDir, filename));
+            Assert.AreEqual("\"test\"", text);
+        }
+
+        [Test]
+        public void Should_dequeue() {
+            _queue.Enqueue("test");
+            var item = _queue.Dequeue<string>();
             Assert.AreEqual("test", item);
         }
 
         [TearDown]
         public void TearDown() {
-            EmptyDir();
-            Directory.Delete(_dir);
+            EmptyDirs(_dir, _deepDir);
             _queue.Dispose();
         }
 
-        private void EmptyDir() {
-            var dir = new DirectoryInfo(_dir);
-            dir.EnumerateFiles().ToList().ForEach(f => f.Delete());
+        private void EmptyDirs(params string[] dirs) {
+            foreach (var d in dirs) {
+                var dir = new DirectoryInfo(d);
+                if (!dir.Exists) {
+                    continue;
+                }
+                dir.EnumerateFiles().ToList().ForEach(f => f.Delete());
+                dir.Delete();
+            }
         }
 
-        private string GetFirstDirFile() {
-            var dir = new DirectoryInfo(_dir);
-            return dir.EnumerateFiles().First().Name;
+        private string GetFirstDirFile(string dir) {
+            var d = new DirectoryInfo(dir);
+            return d.EnumerateFiles().First().Name;
         }
     }
 }

@@ -18,22 +18,17 @@ namespace Sharp.Queue {
         public SharpQueue(string directoryPath) {
             _directoryPath = directoryPath;
             Directory.CreateDirectory(directoryPath);
-            _mutex = new Mutex(false, @"Local\" + _directoryPath);
+            _mutex = new Mutex(false, @"Local\" + _directoryPath.Replace(Path.DirectorySeparatorChar, '_'));
         }
 
-        public async Task EnqueueAsync<T>(T item) where T : class {
+        public void Enqueue<T>(T item) where T : class {
             var path = Path.Combine(_directoryPath, Guid.NewGuid().ToString());
             var text = JsonConvert.SerializeObject(item);
-            byte[] encodedText = Encoding.UTF8.GetBytes(text);
-            using (var sourceStream = new FileStream(path,
-                FileMode.Create, FileAccess.Write, FileShare.None,
-                bufferSize: 4096, useAsync: true)) {
-                await sourceStream.WriteAsync(encodedText, 0, encodedText.Length);
-            }
+            File.WriteAllText(path, text, Encoding.UTF8);
             File.Move(path, path + OnQueueExtension);
         }
 
-        public async Task<T> DequeueAsync<T>() where T : class {
+        public T Dequeue<T>() where T : class {
             string item;
             try {
                 _mutex.WaitOne();
@@ -47,10 +42,8 @@ namespace Sharp.Queue {
                 return null;
             }
             try {
-                using (var reader = File.OpenText(item)) {
-                    var fileText = await reader.ReadToEndAsync();
-                    return JsonConvert.DeserializeObject<T>(fileText);
-                }
+                var text = File.ReadAllText(item, Encoding.UTF8);
+                return JsonConvert.DeserializeObject<T>(text);
             }
             catch (Exception) {
                 File.Move(item, item.Replace(WorkingExtension, ErrorExtension));
@@ -61,13 +54,11 @@ namespace Sharp.Queue {
             }
         }
 
-        public async Task<QueueInfo> GetQueueInfoAsync() {
-            return await Task.Run(() => {
-                var info = new DirectoryInfo(_directoryPath);
-                return new QueueInfo(
-                    info.GetFiles("*" + OnQueueExtension).Length,
-                    info.GetFiles("*" + ErrorExtension).Length);
-            });
+        public QueueInfo GetQueueInfo() {
+            var info = new DirectoryInfo(_directoryPath);
+            return new QueueInfo(
+                info.GetFiles("*" + OnQueueExtension).Length,
+                info.GetFiles("*" + ErrorExtension).Length);
         }
 
         public void CleanQueue() {

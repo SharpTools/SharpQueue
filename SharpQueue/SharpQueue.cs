@@ -10,7 +10,7 @@ namespace Sharp.Queue {
     public class SharpQueue : ISharpQueue {
         private readonly string _directoryPath;
         private const string OnQueueExtension = ".item";
-        private const string WorkingExtension = ".owned";
+        private const string WorkingExtension = ".wkg";
         private const string ErrorExtension = ".err";
         private Random _random = new Random();
         private Mutex _mutex;

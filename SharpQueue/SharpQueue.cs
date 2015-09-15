@@ -9,9 +9,10 @@ using Newtonsoft.Json;
 namespace Sharp.Queue {
     public class SharpQueue : ISharpQueue {
         private readonly string _directoryPath;
+        private const string CreatingExtension = ".init";
         private const string OnQueueExtension = ".item";
-        private const string WorkingExtension = ".wkg";
-        private const string ErrorExtension = ".err";
+        private const string WorkingExtension = ".working";
+        private const string ErrorExtension = ".error";
         private Random _random = new Random();
         private Mutex _mutex;
 
@@ -22,10 +23,10 @@ namespace Sharp.Queue {
         }
 
         public void Enqueue<T>(T item) where T : class {
-            var path = Path.Combine(_directoryPath, Guid.NewGuid().ToString());
+            var path = Path.Combine(_directoryPath, Guid.NewGuid().ToString()) + CreatingExtension;
             var text = JsonConvert.SerializeObject(item);
             File.WriteAllText(path, text, Encoding.UTF8);
-            File.Move(path, path + OnQueueExtension);
+            File.Move(path, Path.ChangeExtension(path, OnQueueExtension));
         }
 
         public T Dequeue<T>() where T : class {
@@ -42,15 +43,26 @@ namespace Sharp.Queue {
                 return null;
             }
             try {
-                var text = File.ReadAllText(item, Encoding.UTF8);
+                var text = ReadTheFile(item);
                 return JsonConvert.DeserializeObject<T>(text);
             }
             catch (Exception) {
-                File.Move(item, item.Replace(WorkingExtension, ErrorExtension));
+                File.Move(item, Path.ChangeExtension(item, ErrorExtension));
                 return null;
             }
             finally {
                 File.Delete(item);
+            }
+        }
+
+        private string ReadTheFile(string fullpath) {
+            while (true) {
+                try {
+                    return File.ReadAllText(fullpath, Encoding.UTF8);
+                }
+                catch (IOException) {
+                    Thread.Sleep(_random.Next(0,100));
+                }
             }
         }
 
@@ -83,9 +95,7 @@ namespace Sharp.Queue {
             while (true) {
                 try {
                     var filename = TryRenameNextOnQueue();
-                    if (filename != null) {
-                        return filename;
-                    }
+                    return filename;
                 }
                 catch (IOException) {
                     Thread.Sleep(_random.Next(0,100));
@@ -99,7 +109,7 @@ namespace Sharp.Queue {
             if (fileInfo == null) {
                 return null;
             }
-            var newFilename = fileInfo.Name.Replace(OnQueueExtension, WorkingExtension);
+            var newFilename = Path.Combine(_directoryPath, Path.ChangeExtension(fileInfo.Name, WorkingExtension));
             fileInfo.MoveTo(newFilename);
             return newFilename;
         }

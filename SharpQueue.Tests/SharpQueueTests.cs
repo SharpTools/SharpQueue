@@ -51,6 +51,22 @@ namespace Sharp.Queue.Tests {
             _queue.Dispose();
         }
 
+        [Test]
+        public void Should_count_queue_length() {
+            _queue.Enqueue("teste");
+            _queue.Enqueue("teste");
+            _queue.Enqueue("teste");
+            Assert.AreEqual(3, _queue.GetQueueInfo().Enqueued);
+        }
+
+        [Test]
+        public void When_queue_is_empty__returns_null() {
+            _queue.Enqueue("teste");
+            _queue.Dequeue<string>();
+            var item = _queue.Dequeue<string>();
+            Assert.IsNull(item);
+        }
+
         private void EmptyDirs(params string[] dirs) {
             foreach (var d in dirs) {
                 var dir = new DirectoryInfo(d);

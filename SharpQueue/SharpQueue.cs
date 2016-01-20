@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using SharpQueue.Util;
 
 namespace Sharp.Queue {
     public class SharpQueue : ISharpQueue {
@@ -25,8 +26,13 @@ namespace Sharp.Queue {
         public void Enqueue<T>(T item) where T : class {
             var path = Path.Combine(_directoryPath, Guid.NewGuid().ToString()) + CreatingExtension;
             var text = JsonConvert.SerializeObject(item);
-            File.WriteAllText(path, text, Encoding.UTF8);
-            File.Move(path, Path.ChangeExtension(path, OnQueueExtension));
+            try {
+                Try.ThreeTimes(() => File.WriteAllText(path, text, Encoding.UTF8), 100);
+                Try.ThreeTimes(() => File.Move(path, Path.ChangeExtension(path, OnQueueExtension)), 100);
+            }
+            catch (Exception ex){
+                var x = ex.Message;
+            }
         }
 
         public T Dequeue<T>() where T : class {
@@ -60,8 +66,8 @@ namespace Sharp.Queue {
                 try {
                     return File.ReadAllText(fullpath, Encoding.UTF8);
                 }
-                catch (IOException) {
-                    Thread.Sleep(_random.Next(0,100));
+                catch (Exception) {
+                    Try.Sleep(100);
                 }
             }
         }
@@ -97,8 +103,8 @@ namespace Sharp.Queue {
                     var filename = TryRenameNextOnQueue();
                     return filename;
                 }
-                catch (IOException) {
-                    Thread.Sleep(_random.Next(0,100));
+                catch (Exception) {
+                    Try.Sleep(100);
                 }
             }
         }

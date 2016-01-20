@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23103.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpQueue", "SharpQueue\SharpQueue.csproj", "{12F6B157-7D58-430D-BE15-A0AEA460C3D8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpQueue.Playground", "SharpQueue.Playground\SharpQueue.Playground.csproj", "{4C52F4AB-4BA6-4CC5-A09C-5F3DBEE0DC01}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpQueue.IntegrationTests", "SharpQueue.Tests\SharpQueue.IntegrationTests.csproj", "{0D0675CD-8212-4612-9998-0274A05B7B7A}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SharpQueue", "SharpQueue\SharpQueue.xproj", "{28283E26-CC2B-4E50-B698-68A079640A66}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SharpQueue.Playground", "SharpQueue.Playground\SharpQueue.Playground.xproj", "{3448D6C8-CD8C-46F9-8E34-27FAA9364A4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{12F6B157-7D58-430D-BE15-A0AEA460C3D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12F6B157-7D58-430D-BE15-A0AEA460C3D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12F6B157-7D58-430D-BE15-A0AEA460C3D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12F6B157-7D58-430D-BE15-A0AEA460C3D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C52F4AB-4BA6-4CC5-A09C-5F3DBEE0DC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C52F4AB-4BA6-4CC5-A09C-5F3DBEE0DC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C52F4AB-4BA6-4CC5-A09C-5F3DBEE0DC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C52F4AB-4BA6-4CC5-A09C-5F3DBEE0DC01}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D0675CD-8212-4612-9998-0274A05B7B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D0675CD-8212-4612-9998-0274A05B7B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D0675CD-8212-4612-9998-0274A05B7B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D0675CD-8212-4612-9998-0274A05B7B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28283E26-CC2B-4E50-B698-68A079640A66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28283E26-CC2B-4E50-B698-68A079640A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28283E26-CC2B-4E50-B698-68A079640A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28283E26-CC2B-4E50-B698-68A079640A66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3448D6C8-CD8C-46F9-8E34-27FAA9364A4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3448D6C8-CD8C-46F9-8E34-27FAA9364A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3448D6C8-CD8C-46F9-8E34-27FAA9364A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3448D6C8-CD8C-46F9-8E34-27FAA9364A4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

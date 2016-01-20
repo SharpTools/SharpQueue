@@ -1,0 +1,36 @@
+﻿{
+  "version": "1.1",
+  "description": "Ultra simple multithread / multiprocess directory based persistent queue system for C#",
+  "authors": [ "Andre Carlucci" ],
+  "tags": [ "queue", "async", "persistent", "mutex", "vnext" ],
+  "projectUrl": "https://github.com/sharptools/sharpqueue",
+  "licenseUrl": "https://raw.githubusercontent.com/sharptools/sharpqueue/master/LICENSE",
+
+  "dependencies": {
+    "Newtonsoft.Json": "7.0.1"
+  },
+
+  "frameworks": {
+    "net40": { },
+    "dotnet5.5": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Threading": "4.0.11-beta-23516",
+        "System.IO.FileSystem": "4.0.1-beta-23516"
+      }
+    },
+    "dotnet5.4": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Threading": "4.0.11-beta-23516",
+        "System.IO.FileSystem": "4.0.1-beta-23516"
+      }
+    }
+  }
+}

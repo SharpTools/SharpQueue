@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SharpQueue.Util;
 
-namespace Sharp.Queue {
-    public class SharpQueue : ISharpQueue {
+namespace SharpQueue {
+    public class DirectoryQueue : ISharpQueue {
         private readonly string _directoryPath;
         private const string CreatingExtension = ".init";
         private const string OnQueueExtension = ".item";
@@ -17,7 +17,7 @@ namespace Sharp.Queue {
         private Random _random = new Random();
         private Mutex _mutex;
 
-        public SharpQueue(string directoryPath) {
+        public DirectoryQueue(string directoryPath) {
             _directoryPath = directoryPath;
             Directory.CreateDirectory(directoryPath);
             _mutex = new Mutex(false, @"Local\" + _directoryPath.Replace(Path.DirectorySeparatorChar, '_'));

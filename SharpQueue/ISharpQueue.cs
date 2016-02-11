@@ -1,7 +1,6 @@
 using System;
-using System.Threading.Tasks;
 
-namespace Sharp.Queue {
+namespace SharpQueue {
     public interface ISharpQueue : IDisposable {
         void Enqueue<T>(T item) where T : class;
         T Dequeue<T>() where T : class;

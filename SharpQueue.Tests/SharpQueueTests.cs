@@ -1,19 +1,19 @@
 ﻿using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using NUnit.Framework;
+using SharpQueue;
 
 namespace Sharp.Queue.Tests {
     public class SharpQueueTests {
 
         private string _dir = "dir";
         private string _deepDir = "secondDir\\test";
-        private SharpQueue _queue;
+        private DirectoryQueue _queue;
 
         [SetUp]
         public void SetUp() {
             EmptyDirs(_dir, _deepDir);
-            _queue = new SharpQueue(_dir);
+            _queue = new DirectoryQueue(_dir);
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace Sharp.Queue.Tests {
 
         [Test]
         public void Mutex_names_dont_allow_backslash() {
-            _queue = new SharpQueue(_deepDir);
+            _queue = new DirectoryQueue(_deepDir);
             _queue.Enqueue("test");
             var filename = GetFirstDirFile(_deepDir);
             var text = File.ReadAllText(Path.Combine(_deepDir, filename));

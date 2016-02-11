@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.1",
+  "version": "1.2",
   "description": "Ultra simple multithread / multiprocess directory based persistent queue system for C#",
   "authors": [ "Andre Carlucci" ],
   "tags": [ "queue", "async", "persistent", "mutex", "vnext" ],

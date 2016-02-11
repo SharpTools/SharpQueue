@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sharp.Queue;
+using SharpQueue;
 
 namespace Sharp.Queue.Playground {
     class Program {
@@ -32,7 +33,7 @@ namespace Sharp.Queue.Playground {
                 });
             }
             Task.Run(async () => {
-                using (var q = new SharpQueue("queue")) {
+                using (var q = new DirectoryQueue("queue")) {
                     while (Program.Running) {
                         await Task.Delay(2000);
                         var info = q.GetQueueInfo();
@@ -52,7 +53,7 @@ namespace Sharp.Queue.Playground {
 
         private static void StartQueueCleaner() {
             Task.Run(async () => {
-                using (var q = new SharpQueue("queue")) {
+                using (var q = new DirectoryQueue("queue")) {
                     while (Program.Running) {
                         await Task.Delay(5000);
                         try {
@@ -81,7 +82,7 @@ namespace Sharp.Queue.Playground {
 
     public class Enqueuer {
         public async Task Enqueue(List<Item> items) {
-            using (var q = new SharpQueue("queue")) {
+            using (var q = new DirectoryQueue("queue")) {
                 while (Program.Running) {
                     try {
                         q.Enqueue(items);
@@ -100,7 +101,7 @@ namespace Sharp.Queue.Playground {
         public bool Running { get; set; } = true;
 
         public async Task Dequeue() {
-            using (var q = new SharpQueue("queue")) {
+            using (var q = new DirectoryQueue("queue")) {
                 while (Program.Running) {
                     try {
                         var item = q.Dequeue<List<Item>>();

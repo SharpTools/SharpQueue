@@ -1,4 +1,4 @@
-namespace Sharp.Queue {
+namespace SharpQueue {
     public class QueueInfo {
         public int Enqueued { get; }
         public int Error { get; }

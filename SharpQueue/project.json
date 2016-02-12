@@ -1,10 +1,12 @@
 ﻿{
-  "version": "1.2",
+  "version": "1.2.2",
   "description": "Ultra simple multithread / multiprocess directory based persistent queue system for C#",
   "authors": [ "Andre Carlucci" ],
   "tags": [ "queue", "async", "persistent", "mutex", "vnext" ],
   "projectUrl": "https://github.com/sharptools/sharpqueue",
   "licenseUrl": "https://raw.githubusercontent.com/sharptools/sharpqueue/master/LICENSE",
+  "iconUrl": "https://raw.githubusercontent.com/SharpTools/sharpqueue/master/icon/sharpqueue.jpg",
+  "releaseNotes": "Namespace change due to conflict. SharpQueue -> DirectoryQueue. See https://github.com/SharpTools/sharpqueue",
 
   "dependencies": {
     "Newtonsoft.Json": "7.0.1"

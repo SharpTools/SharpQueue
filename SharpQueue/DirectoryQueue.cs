@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SharpQueue.Util;
 
@@ -31,7 +30,7 @@ namespace SharpQueue {
                 Try.ThreeTimes(() => File.Move(path, Path.ChangeExtension(path, OnQueueExtension)), 100);
             }
             catch (Exception ex){
-                var x = ex.Message;
+                throw new QueueException($"Could not enqueue item: {item}", ex);
             }
         }
 
@@ -52,12 +51,12 @@ namespace SharpQueue {
                 var text = ReadTheFile(item);
                 return JsonConvert.DeserializeObject<T>(text);
             }
-            catch (Exception) {
-                File.Move(item, Path.ChangeExtension(item, ErrorExtension));
-                return null;
+            catch (Exception ex) {
+                Try.ThreeTimes(() => File.Move(item, Path.ChangeExtension(item, ErrorExtension)));
+                throw new QueueException($"Could not dequeue item: {item}", ex);
             }
             finally {
-                File.Delete(item);
+                Try.ThreeTimes(() => File.Delete(item));
             }
         }
 

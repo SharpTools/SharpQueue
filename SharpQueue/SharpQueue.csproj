@@ -1,50 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Ultra simple multithread / multiprocess directory based persistent queue system for C#</Description>
-    <VersionPrefix>1.2.2</VersionPrefix>
-    <Authors>Andre Carlucci</Authors>
-    <TargetFrameworks>net40;dotnet5.5;dotnet5.4</TargetFrameworks>
-    <AssemblyName>SharpQueue</AssemblyName>
-    <PackageId>SharpQueue</PackageId>
-    <PackageTags>queue;async;persistent;mutex;vnext</PackageTags>
-    <PackageReleaseNotes>Namespace change due to conflict. SharpQueue -&gt; DirectoryQueue. See https://github.com/SharpTools/sharpqueue</PackageReleaseNotes>
-    <PackageIconUrl>https://raw.githubusercontent.com/SharpTools/sharpqueue/master/icon/sharpqueue.jpg</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/sharptools/sharpqueue</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/sharptools/sharpqueue/master/LICENSE</PackageLicenseUrl>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'dotnet5.5' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.0.1" />
-    <PackageReference Include="System.Collections" Version="4.0.11" />
-    <PackageReference Include="System.Linq" Version="4.1.0" />
-    <PackageReference Include="System.Runtime" Version="4.1.0" />
-    <PackageReference Include="System.Threading" Version="4.0.11" />
-    <PackageReference Include="System.IO.FileSystem" Version="4.0.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'dotnet5.4' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.0.1" />
-    <PackageReference Include="System.Collections" Version="4.0.11" />
-    <PackageReference Include="System.Linq" Version="4.1.0" />
-    <PackageReference Include="System.Runtime" Version="4.1.0" />
-    <PackageReference Include="System.Threading" Version="4.0.11" />
-    <PackageReference Include="System.IO.FileSystem" Version="4.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 
 </Project>

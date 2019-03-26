@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpQueue.IntegrationTests", "SharpQueue.Tests\SharpQueue.IntegrationTests.csproj", "{0D0675CD-8212-4612-9998-0274A05B7B7A}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SharpQueue", "SharpQueue\SharpQueue.xproj", "{28283E26-CC2B-4E50-B698-68A079640A66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpQueue", "SharpQueue\SharpQueue.csproj", "{28283E26-CC2B-4E50-B698-68A079640A66}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SharpQueue.Playground", "SharpQueue.Playground\SharpQueue.Playground.xproj", "{3448D6C8-CD8C-46F9-8E34-27FAA9364A4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpQueue.Playground", "SharpQueue.Playground\SharpQueue.Playground.csproj", "{3448D6C8-CD8C-46F9-8E34-27FAA9364A4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16725627-0D82-4633-AB3E-3866FC7841DE}
 	EndGlobalSection
 EndGlobal
